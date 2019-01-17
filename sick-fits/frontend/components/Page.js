@@ -32,13 +32,10 @@ injectGlobal`
         font-weight: normal;
         font-style: normal;
     }
+    
     html {
         box-shadow: border-box;
         font-size: 10px;
-    }
-
-    *, *:before, *:after {
-        box-shadow: inherit;
     }
     
     body {

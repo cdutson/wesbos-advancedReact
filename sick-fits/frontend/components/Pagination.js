@@ -43,7 +43,7 @@ const Pagination = props => (
                                 page: page + 1
                             }
                         }}>
-                            <a className="next" aria-disabled={page >= pages}>Prev</a>
+                            <a className="next" aria-disabled={page >= pages}>Next</a>
                         </Link>
                     </PaginationStyles>
         )}}
