@@ -32,47 +32,59 @@ class Signup extends Component {
 
 	render() {
 		return (
-            <Mutation mutation={SIGNUP_MUTATION} variables={this.state}>
-                {(signup, {error, loading}) => {
-                    
-                }}
-            </Mutation>
-			<Form>
-				<fieldset>
-					<h2> Signup for An Account</h2>
-					<label htmlFor="email">
-						email
-						<input
-							type="email"
-							name="email"
-							placeholder="email"
-							value={this.state.email}
-							onChange={this.saveToState}
-						/>
-					</label>
-					<label htmlFor="name">
-						name
-						<input
-							type="text"
-							name="name"
-							placeholder="name"
-							value={this.state.name}
-							onChange={this.saveToState}
-						/>
-					</label>
-					<label htmlFor="password">
-						password
-						<input
-							type="password"
-							name="password"
-							placeholder="password"
-							value={this.state.password}
-							onChange={this.saveToState}
-						/>
-					</label>
-					<button type="submit">Sign up</button>
-				</fieldset>
-			</Form>
+			<Mutation mutation={SIGNUP_MUTATION} variables={this.state}>
+				{(signup, { error, loading }) => (
+					<Form
+						method="post"
+						onSubmit={async e => {
+							e.preventDefault();
+							await signup();
+							this.setState({
+								name: '',
+								email: '',
+								password: ''
+							});
+						}}
+					>
+						<fieldset disabled={loading} aria-busy={loading}>
+							<h2> Signup for An Account</h2>
+							<Error error={error} />
+
+							<label htmlFor="email">
+								email
+								<input
+									type="email"
+									name="email"
+									placeholder="email"
+									value={this.state.email}
+									onChange={this.saveToState}
+								/>
+							</label>
+							<label htmlFor="name">
+								name
+								<input
+									type="text"
+									name="name"
+									placeholder="name"
+									value={this.state.name}
+									onChange={this.saveToState}
+								/>
+							</label>
+							<label htmlFor="password">
+								password
+								<input
+									type="password"
+									name="password"
+									placeholder="password"
+									value={this.state.password}
+									onChange={this.saveToState}
+								/>
+							</label>
+							<button type="submit">Sign up</button>
+						</fieldset>
+					</Form>
+				)}
+			</Mutation>
 		);
 	}
 }
